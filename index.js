@@ -1,5 +1,5 @@
 import{Header, Nav, Main, Footer} from "./Components";
-import * as store from "./store"
+import * as store from "./store";
 import Navigo from "navigo";
 import {capitalize} from "lodash";
 import axios from "axios";
