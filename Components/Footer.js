@@ -1,3 +1,5 @@
 import html from "html-literal";
 
-export default()=> html``;
+export default()=> html`<footer>
+All Around
+</footer>`;
