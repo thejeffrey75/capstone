@@ -1,4 +1,4 @@
 export default {
-  header: "My Articles Page",
+  header: "Articles",
   view: "Articles",
 };
