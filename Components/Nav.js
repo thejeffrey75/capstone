@@ -2,7 +2,6 @@ import html from "html-literal";
 
 export default links => html`
   <nav id="nav-1">
-  <a class="All-Around" >All Around</a>
   <a class="link-1" href="Shop">Shop</a>
   <a class="link-1" href="Home">Home</a>
   <a class="link-1" href="Articles">Articles</a>
