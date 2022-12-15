@@ -1,4 +1,4 @@
 export default {
-  header: "",
+  header: "Home",
   view: "Home",
 };
