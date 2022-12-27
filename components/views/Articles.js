@@ -1,4 +1,8 @@
 import html from "html-literal";
-export default()=>html`
-<p>
-</p>`
+export default(state)=>html`
+<h1>
+Read up on these trending supplements!
+</h1>
+
+`
+;

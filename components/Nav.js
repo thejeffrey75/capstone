@@ -5,6 +5,7 @@ export default links => html`
   <a class="link-1" href="Shop">Shop</a>
   <a class="link-1" href="Home">Home</a>
   <a class="link-1" href="Articles">Articles</a>
+  <a class="link-1" href="Contact">Contact</a>
     <i class="fas fa-bars"></i>
     <ul class="hidden--mobile nav-links">
       <!-- ${links

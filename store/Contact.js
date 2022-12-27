@@ -1,5 +1,4 @@
 export default {
   header: "",
-  view: "Home",
-
+  view: "Contact",
 };
