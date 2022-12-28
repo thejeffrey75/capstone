@@ -14,12 +14,12 @@ function render(state=store.Home){
   ${Nav(store.Links)}
   ${Main(state)}
   ${Footer()}`;
-   afterRender();
+   afterRender(state);
   router.updatePageLinks();
   }
 
 
-  function afterRender() {
+  function afterRender(state) {
     // add menu toggle to bars icon in nav bar
     document.querySelector(".fa-bars").addEventListener("click", () => {
       document.querySelector("nav > ul").classList.toggle("hidden--mobile");
@@ -83,23 +83,25 @@ function render(state=store.Home){
 
   router.hooks({
     before: (done, params) => {
-      const view = params && params.data && params.data.view ? capitalize(params.data.view) : "Home";  // Add a switch case statement to handle multiple routes
+      const view = params && params.data && params.data.view
+      ? capitalize(params.data.view)
+      : "Home";  // Add a switch case statement to handle multiple routes
       switch (view) {
-        case "Home":
+        case "Results":
           axios
-            .get(
-              // Replace the key provided here with your own key from openweathermap
-              `'https://developer.nrel.gov/api/alt-fuel-stations/v1.json?limit=1&api_key=${process.env.SUP_FACTS}`
-            )
+            .get( `${process.env.RESULT_API}/results`)
             .then(response => {
 
-              store.Home.suppFacts = {};
-             store.Home.suppFacts = response.data;
+             // store.Results.results = {};
+             store.Results.results = response.data;
 
-              console.log(store.Home.suppFacts);
+              //console.log(store.Results.results);
               done();
             })
-            .catch(err => console.log(err));
+            .catch(error => {
+              console.log("It puked", error);
+              done();
+            });
             break;
         default:
           done();
