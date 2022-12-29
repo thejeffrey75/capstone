@@ -6,11 +6,14 @@ export default(state)=>html`
 </section class=body2>
 
 <h3>
- This is the ${state.data}
+ This is the ${state.primIng}
 </h3>
+
 
 <h2 class="body2">
   How can we help?
+
+
 
 </h2>
 
@@ -18,23 +21,24 @@ export default(state)=>html`
 <h2 >
 
 <form method="post" action="">
-  <label id= "age" name= "age" for="age">
-
+  <label for="age">
     Age:</label>
     <input
     type="text"
-
-
-  ><br>
+    name="age"
+    id="age"
+    placeholder="Enter Age"
+    required
+    />
+    <br>
 </label>
 
 
 
     <fieldset>
         <legend>Do you?</legend>
-        <select id="vice" name="vice">
-        <input type="checkbox" name="vice" value="drinker">Drink<br>
-        <input type="checkbox" name="vice" value="smoker">Smoke<br>
+        <input type="checkbox" id="vice" name="vice" value="drinker">Drink<br>
+        <input type="checkbox" id="vice" name="vice" value="smoker">Smoke<br>
         <br>
         </select>
 
@@ -43,13 +47,12 @@ export default(state)=>html`
 
 
     <fieldset>
-        <legend>What are your ailments?</legend>
-        <select id="ailments" name="ailments">
-        <input type="checkbox" name="ailment" value="stress">Stress><br>
-        <input type="checkbox" name="ailment" value="cold">Cold<br>
-        <input type="checkbox" name="ailment" value="cramps">Cramps<br>
-        <input type="checkbox" name="ailment" value="weightManagement">Weight Management<br>
-        <input type="checkbox" name="ailment" value="acne">Acne<br>
+        <legend>What ailment brings you here?</legend>
+        <input type="radio" id="ailments" name="ailments" value="stress">Stress<br>
+        <input type="radio" id="ailments" name="ailments" value="cold">Cold<br>
+        <input type="radio" id="ailments" name="ailments" value="cramps">Cramps<br>
+        <input type="radio" id="ailments" name="ailments" value="weightManagement">Weight Management<br>
+        <input type="radio" id="ailments" name="ailments" value="acne">Acne<br>
         </select>
         <br>
 
@@ -59,13 +62,11 @@ export default(state)=>html`
 
     <fieldset>
         <legend>Are you taking any of the following?</legend>
-        <select id="pretrials" name="pretrials">
-        <input type="checkbox" name="pretrials" value="ashwagandha">Ashwagandha<br>
-        <input type="checkbox" name="pretrials" value="vitaminC">Vitamin C<br>
-        <input type="checkbox" name="pretrials" value="magnesium">Magnesium<br>
-        <input type="checkbox" name="pretrials" value="acv">Apple Cider Vinegar<br>
-        <input type="checkbox" name="pretrials" value="blackSeedOil">Black Seed Oil<br>
-        </select>
+        <input type="checkbox" id="pretrials" name="pretrials" value="ashwagandha">Ashwagandha<br>
+        <input type="checkbox" id="pretrials" name="pretrials" value="vitaminC">Vitamin C<br>
+        <input type="checkbox" id="pretrials" name="pretrials" value="magnesium">Magnesium<br>
+        <input type="checkbox" id="pretrials" name="pretrials" value="acv">Apple Cider Vinegar<br>
+        <input type="checkbox" id="pretrials" name="pretrials" value="blackSeedOil">Black Seed Oil<br>
         <br>
         <input type="submit"  name="Results" value="Submit" />
     </fieldset>

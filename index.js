@@ -4,6 +4,7 @@ import Navigo from "navigo";
 import {capitalize, negate} from "lodash";
 import axios from "axios";
 import dotenv from "dotenv";
+
 dotenv.config();
 
 const router = new Navigo("/");
@@ -25,7 +26,12 @@ function render(state=store.Home){
       document.querySelector("nav > ul").classList.toggle("hidden--mobile");
     });
 
+
+
     if (state.view === "Home") {
+
+
+
       document.querySelector("form").addEventListener("submit", event => {
         event.preventDefault();
 
@@ -36,12 +42,6 @@ function render(state=store.Home){
         const vice=[];
         const pretrials=[];
 
-
-        for (let input of inputList.ailments) {
-          if (input.checked) {
-            ailments.push(input.value);
-          }
-        }
 
         for (let input of inputList.vice) {
           if (input.checked) {
@@ -58,21 +58,35 @@ function render(state=store.Home){
         const requestData = {
           age: inputList.age.value,
           vice: vice,
-          ailments: ailments,
+          ailments: inputList.ailments.value,
           pretrials: pretrials,
 
         };
         console.log("request Body", requestData);
 
+
+
+
+        let reccomendation = "vitamin c";
+
+        // if (requestData.ailments="stress"){
+        //   return reccomendation="ashwagandha"
+        // }
+
+        //requestData.reccomendation
+
         axios
           .post(`${process.env.RESULT_API}/results`, requestData)
           .then(response => {
+            console.log("hello");
+            console.log(reccomendation)
             store.Results.results.push(response.data);
             router.navigate("/Results");
           })
           .catch(error => {
             console.log("It puked", error);
           });
+
       });
     }
 
@@ -87,13 +101,20 @@ function render(state=store.Home){
       ? capitalize(params.data.view)
       : "Home";  // Add a switch case statement to handle multiple routes
       switch (view) {
-        case "Results":
-          axios
-            .get( `${process.env.RESULT_API}/results`)
-            .then(response => {
+        case "Home":
 
-             // store.Results.results = {};
-             store.Results.results = response.data;
+          axios
+           // .get(`https://api.ods.od.nih.gov/dsld/v8/#factsheet`)
+             // .get(`https://api.ods.od.nih.gov/dsld/v8/search-filter?from=0&size=3&product_name=${reccomendation} `)
+              .get(`https://api.ods.od.nih.gov/dsld/v8/browse-ingredientgroups?method=by_letter&q=magnesium&from=0&size=3
+
+              `)
+            .then(response =>  {
+              //store.Home.ingredients = {};
+              console.log(response.data)
+             //  store.Results.dietarySupplementsFacts = {};
+            //   store.Results.dietarySupplementsFacts.name= response.data.name;
+            //  console.log( store.Results.dietarySupplementsFacts.name);
 
               //console.log(store.Results.results);
               done();

@@ -13,12 +13,12 @@ router.post("/", (request, response) => {
   });
 });
 
-// router.get("/", (request, response) => {
-//   const newResultsGet = new Results(request.body);
-//   newResultsGet.save((error, record) => {
-//     if (error) return response.status(500).json(error);
-//     return response.json(record);
-//   });
-// });
+router.get("/", (request, response) => {
+  Results.find({}, (error, record) => {
+    if (error) return response.status(500).json(error);
+    return response.json(record);
+  });
+});
+
 
 module.exports = router;

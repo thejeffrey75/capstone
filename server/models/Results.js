@@ -8,8 +8,10 @@ const resultsSchema = new mongoose.Schema({
   },
   vice: [String],
 
-  ailments: [String],
-
+  ailments: {
+  type: String,
+  validate: /^[A-Za-z0-9 ]*$/
+  },
   pretrials: [String],
 
 });
