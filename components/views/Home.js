@@ -5,9 +5,6 @@ export default(state)=>html`
 <a href="index.html"></a>
 </section class=body2>
 
-<h3>
- This is the ${state.primIng}
-</h3>
 
 
 <h2 class="body2">

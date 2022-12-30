@@ -1,7 +1,7 @@
 import{Header, Nav, Main, Footer} from "./components";
 import * as store from "./store";
 import Navigo from "navigo";
-import {capitalize, negate} from "lodash";
+import {capitalize} from "lodash";
 import axios from "axios";
 import dotenv from "dotenv";
 
@@ -38,7 +38,6 @@ function render(state=store.Home){
         const inputList = event.target.elements;
         console.log("Input Element List", inputList);
 
-        const ailments = [];
         const vice=[];
         const pretrials=[];
 
@@ -65,9 +64,12 @@ function render(state=store.Home){
         console.log("request Body", requestData);
 
 
+        let blank= store.Results.blank;
 
 
-        let reccomendation = "vitamin c";
+
+
+        let reccomendation = "";
 
         // if (requestData.ailments="stress"){
         //   return reccomendation="ashwagandha"
@@ -78,9 +80,35 @@ function render(state=store.Home){
         axios
           .post(`${process.env.RESULT_API}/results`, requestData)
           .then(response => {
-            console.log("hello");
             console.log(reccomendation)
             store.Results.results.push(response.data);
+
+//if stress is selectd
+let ashLinks= {
+  Link1: "180525",
+  Link2: "223325"
+}
+
+store.Results.randomAshwagandhaLink.push(ashLinks);
+
+console.log(store.Results.randomAshwagandhaLink);
+console.log(store.Results.randomAshwagandhaLink);
+
+if (inputList.ailments.value === "stress"){
+  store.Results.blank[0]= store.Results.randomAshwagandhaLink;
+  reccomendation= "ashwagandha";
+  }
+//if cramps is selected
+  if (inputList.ailments.value === "cramps"){
+    store.Results.blank[0]= store.Results.randomMagnesiumLink;
+    reccomendation= "magnesium";
+    }
+  store.Results.reccomendation.push(reccomendation);
+
+
+
+            console.log(store.Results.reccomendation);
+            console.log(store.Results.randomAshwagandhaLink);
             router.navigate("/Results");
           })
           .catch(error => {
@@ -101,22 +129,14 @@ function render(state=store.Home){
       ? capitalize(params.data.view)
       : "Home";  // Add a switch case statement to handle multiple routes
       switch (view) {
-        case "Home":
+        case "Results":
 
           axios
-           // .get(`https://api.ods.od.nih.gov/dsld/v8/#factsheet`)
-             // .get(`https://api.ods.od.nih.gov/dsld/v8/search-filter?from=0&size=3&product_name=${reccomendation} `)
-              .get(`https://api.ods.od.nih.gov/dsld/v8/browse-ingredientgroups?method=by_letter&q=magnesium&from=0&size=3
+              .get(`https://api.ods.od.nih.gov/dsld/v8/browse-ingredientgroups?method=by_letter&q=${store.Results.reccomendation}&from=0&size=3
 
               `)
             .then(response =>  {
-              //store.Home.ingredients = {};
-              console.log(response.data)
-             //  store.Results.dietarySupplementsFacts = {};
-            //   store.Results.dietarySupplementsFacts.name= response.data.name;
-            //  console.log( store.Results.dietarySupplementsFacts.name);
-
-              //console.log(store.Results.results);
+              console.log(store.Results.reccomendation);
               done();
             })
             .catch(error => {
