@@ -1,4 +1,9 @@
 export default {
-  header: "My Results Page",
+  header: "Results",
   view: "Results",
+  results:[],
+  reccomendation:[],
+  randomMagnesiumLink: [],
+  randomAshwagandhaLink:[],
+  blank:[],
 };
