@@ -41,6 +41,12 @@ header {
 
 }
 
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 nav > ul > li {
   border: solid 1px;
   padding: .33em;
@@ -131,7 +137,7 @@ padding-top: 45px;
   padding-top: 150px;
   padding-bottom: 50px;
   justify-content: center;
-
+  align-items: center;
 }
 #request{
   display: flex;
@@ -140,4 +146,8 @@ padding-top: 45px;
 
 }
 
+.results {
+  flex-direction: row;
 
+
+}

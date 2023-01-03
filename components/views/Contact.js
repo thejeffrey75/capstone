@@ -12,7 +12,7 @@ export default(state)=>html`
   Reach out to us!
 </h2>
 <h1>
-<img src="./assets/images/pexels-fauxels-3184423.jpg">
+<img src= "assets\images\desola-lanre-ologun-IgUR1iX0mqM-unsplash.jpg"/>
 </h1>
 <ul>
 <li> 561-000-0000 </li>
