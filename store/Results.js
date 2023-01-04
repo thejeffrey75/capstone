@@ -1,5 +1,5 @@
 export default {
-  header: "Results",
+  header: "",
   view: "Results",
   results:[],
   reccomendation:[],
@@ -17,8 +17,13 @@ export default {
   blank:[],
   productInfo:[],
   referencePage:[],
-  altOptions:[],
+  altOptionsLink:[],
+  altOptionsNotice:[],
   viceSmokerLink:[],
-  viceDrinkerLink:[]
+  viceDrinkerLink:[],
+  viceSmokerNotice:[],
+  viceDrinkerNotice: [],
+  altOptionsLinkNotice: []
+
 };
 

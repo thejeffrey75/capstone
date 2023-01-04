@@ -35,6 +35,8 @@ function render(state=store.Home){
       document.querySelector("form").addEventListener("submit", event => {
         event.preventDefault();
 
+
+
         const inputList = event.target.elements;
         console.log("Input Element List", inputList);
 
@@ -65,9 +67,9 @@ function render(state=store.Home){
 
 
 
+        // store.Articles.push(requestData.pretrials);
 
-
-        let reccomendation = "";
+        let reccomendation = "fff";
 
         // if (requestData.ailments="stress"){
         //   return reccomendation="ashwagandha"
@@ -81,37 +83,44 @@ function render(state=store.Home){
             console.log(reccomendation)
             store.Results.results.push(response.data);
 
+let altOptionsNotice="Keep it consistent with the supplements you are already using. Here are some additional supplements that may provide better results.";
+let altOptionsLink= "https://www.nhlbi.nih.gov/health/educational/healthdisp/pdf/tipsheets/Tips-for-a-Healthy-Lifestyle.pdf";
+let altOptionsLinkNotice= "Check out this link to learn about different ways to improve your health";
+
+
+let viceSmokerNotice="Smoking can have a negative impact on your health, click on this link to learn more";
+let viceSmokerLink=  "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5490618/"
+let viceDrinkerNotice= "Drinking alcohol can have a negative impact on your health, click on this link to learn more";
+let viceDrinkerLink=  "https://www.niaaa.nih.gov/alcohols-effects-health/alcohols-effects-body";
+
+if (vice.includes("smoker")) {
+store.Results.viceSmokerLink.push(viceSmokerLink);
+store.Results.viceSmokerNotice.push(viceSmokerNotice);
+};
+
+
+if (vice.includes("drinker")) {
+  store.Results.viceDrinkerLink.push(viceDrinkerLink);
+  store.Results.viceDrinkerNotice.push(viceDrinkerNotice);
+
+  };
+
 //if stress is selectd
 
 if (inputList.ailments.value === "stress" && !pretrials.includes("ashwagandha")){
   reccomendation= "ashwagandha";
 }
-  else if (inputList.ailments.value === "stress" && pretrials[0] =="ashwagandha"){
+  else if (inputList.ailments.value === "stress" && pretrials.includes("ashwagandha") && !pretrials.includes("melatonin")){
     reccomendation= "melatonin";
-  };
+  }
 
-  // else if (inputList.ailments.value === "stress" && pretrials[0] =="ashwagandha" && pretrials.includes("ashwagandha"))
-  // {
-  //   reccomendation= "alt links";
-  // }
+  else if (inputList.ailments.value === "stress" && pretrials.includes("ashwagandha") && pretrials.includes("melatonin") ){
+    reccomendation= "magnesium";
+    store.Results.altOptionsLink.push(altOptionsLink);
+    store.Results.altOptionsNotice.push(altOptionsNotice);
+    store.Results.altOptionsLinkNotice.push(altOptionsLinkNotice);
+  }
 //if cramps is selected
-
-// altOptions=["Keep it consistent the supplements you are already. Here are some additional supplements that may provide better results.", "https://www.nhlbi.nih.gov/health/educational/healthdisp/pdf/tipsheets/Tips-for-a-Healthy-Lifestyle.pdf"];
-
-// let viceSmokerLink=[ "Smoking can have a negative impact on your health, check out this article to learn more", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5490618/"];
-// let viceDrinkerLink=[ "Drinking alcohol can have a negative impact on your health, check out this article to learn more", "https://www.niaaa.nih.gov/alcohols-effects-health/alcohols-effects-body"];
-
-// if (vice.includes("smoker")) {
-// store.Results.viceSmokerLink.push(viceSmokerLink);
-
-// };
-
-
-// if (vice.includes("drinker")) {
-//   store.Results.viceDrinkerLink.push(viceDrinkerLink);
-
-//   };
-
 
   if (inputList.ailments.value === "cramps" && !pretrials.includes("magnesium")) {
     reccomendation= "magnesium";
@@ -122,7 +131,9 @@ if (inputList.ailments.value === "stress" && !pretrials.includes("ashwagandha"))
   }
   else if (inputList.ailments.value === "cramps" && pretrials.includes("magnesium") && pretrials.includes("vitamin B12") ){
 reccomendation= "magnesium";
-store.Results.altOptions.push(altOptions);
+store.Results.altOptionsLink.push(altOptionsLink);
+store.Results.altOptionsNotice.push(altOptionsNotice);
+store.Results.altOptionsLinkNotice.push(altOptionsLinkNotice);
   }
 
   //if cold is selected
@@ -130,8 +141,14 @@ store.Results.altOptions.push(altOptions);
     if (inputList.ailments.value === "cold" && !pretrials.includes("vitamin C")){
       reccomendation= "vitamin C";
     }
-      else if (inputList.ailments.value === "cold" && pretrials[0] =="vitamin C"){
+      else if (inputList.ailments.value === "cold" &&  pretrials.includes("vitamin C") && !pretrials.includes("zinc")){
         reccomendation= "zinc";
+      }
+      else if (inputList.ailments.value === "cold" && pretrials.includes("zinc") && pretrials.includes("vitamin C") ){
+        reccomendation= "vitamin C";
+        store.Results.altOptionsLink.push(altOptionsLink);
+        store.Results.altOptionsNotice.push(altOptionsNotice);
+        store.Results.altOptionsLinkNotice.push(altOptionsLinkNotice)
       };
 
 
@@ -142,8 +159,14 @@ store.Results.altOptions.push(altOptions);
     if (inputList.ailments.value === "weight management" && !pretrials.includes("apple cider vinegar")){
       reccomendation= "apple cider vinegar";
     }
-    else if (inputList.ailments.value === "weight management" && pretrials[0] =="apple cider vinegar"){
+    else if (inputList.ailments.value === "weight management" && pretrials.includes("apple cider vinegar")&& !pretrials.includes("green tea")){
       reccomendation= "green tea";
+      }
+      else if (inputList.ailments.value === "weight management" && pretrials.includes("apple cider vinegar") && pretrials.includes("green tea") ){
+        reccomendation= "apple cider vinegar";
+        store.Results.altOptionsLink.push(altOptionsLink);
+        store.Results.altOptionsNotice.push(altOptionsNotice);
+        store.Results.altOptionsLinkNotice.push(altOptionsLinkNotice)
       };
 
 
@@ -152,11 +175,20 @@ store.Results.altOptions.push(altOptions);
     if (inputList.ailments.value === "acne" && !pretrials.includes("black seed")) {
       reccomendation= "black seed";
     }
-    else if (inputList.ailments.value === "acne" && pretrials[0] =="black seed"){
-      reccomendation= "vitamin e";
+    else if (inputList.ailments.value === "acne" && pretrials.includes("black seed")&& !pretrials.includes("vitamin E")){
+      reccomendation= "vitamin E";
+      }
+      else if (inputList.ailments.value === "acne" && pretrials.includes("black seed") && pretrials.includes("vitamin E") ){
+        reccomendation= "apple cider vinegar";
+        store.Results.altOptionsLink.push(altOptionsLink);
+        store.Results.altOptionsNotice.push(altOptionsNotice);
+        store.Results.altOptionsLinkNotice.push(altOptionsLinkNotice)
       };
 
+
+      //console.log(store.Results.viceDrinkerLink);
       console.log(reccomendation);
+      console.log(store.Results.viceDrinkerLink);
   store.Results.reccomendation.push(reccomendation);
   store.Results.reccomendationLink.push(reccomendation.replaceAll(' ', '_'))
 
