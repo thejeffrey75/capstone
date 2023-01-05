@@ -72,7 +72,7 @@ export default(state)=>html`
         <input type="checkbox" id="pretrials" name="pretrials" value="green tea">Green Tea<br>
         <input type="checkbox" id="pretrials" name="pretrials" value="vitamin E">Vitamin E<br>
         <br>
-        <input type="submit"  name="Results" value="Submit" />
+        <input type="submit" id="submit" name="Results" value="Submit" />
     </fieldset>
 </form>
 
