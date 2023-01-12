@@ -36,7 +36,7 @@ function render(state=store.Home){
         event.preventDefault();
 
 
-
+// Create form for results
         const inputList = event.target.elements;
         console.log("Input Element List", inputList);
 
@@ -65,23 +65,15 @@ function render(state=store.Home){
         };
         console.log("request Body", requestData);
 
-
-
-        // store.Articles.push(requestData.pretrials);
-
         let reccomendation = "fff";
-
-        // if (requestData.ailments="stress"){
-        //   return reccomendation="ashwagandha"
-        // }
-
-        //requestData.reccomendation
 
         axios
           .post(`${process.env.RESULT_API}/results`, requestData)
           .then(response => {
             console.log(reccomendation)
             store.Results.results.push(response.data);
+
+  //  All the toggled options
 
 let altOptionsNotice="Keep it consistent with the supplements you are already using. Here are some additional supplements that may provide better results.";
 let altOptionsLink= "https://www.nhlbi.nih.gov/health/educational/healthdisp/pdf/tipsheets/Tips-for-a-Healthy-Lifestyle.pdf";
@@ -185,10 +177,7 @@ store.Results.altOptionsLinkNotice.push(altOptionsLinkNotice);
         store.Results.altOptionsLinkNotice.push(altOptionsLinkNotice)
       };
 
-
-      //console.log(store.Results.viceDrinkerLink);
-      console.log(reccomendation);
-      console.log(store.Results.viceDrinkerLink);
+      //pushing reccomendation as a link
   store.Results.reccomendation.push(reccomendation);
   store.Results.reccomendationLink.push(reccomendation.replaceAll(' ', '_'))
 
@@ -214,8 +203,6 @@ store.Results.altOptionsLinkNotice.push(altOptionsLinkNotice);
       switch (view) {
         case "Results":
           let referencePage =   `https://api.ods.od.nih.gov/dsld/v8/browse-products/?method=by_keyword&q=${store.Results.reccomendation}&from=0&size=10`
-       // let referencePage = `https://api.ods.od.nih.gov/dsld/v8/browse-ingredientgroups?method=by_letter&q=${store.Results.reccomendation}&from=0&size=3`
-       //let link1 = `https://api.ods.od.nih.gov/dsld/v8/label/${store.Results.productInfo[0].data.hits[0]._id}`
        let link1 = `https://api.ods.od.nih.gov/dsld/v8/label/${store.Results.blank[0]}`
         let link2 = `https://api.ods.od.nih.gov/dsld/v8/label/${store.Results.blank[1]}`
         let link3 = `https://api.ods.od.nih.gov/dsld/v8/label/${store.Results.blank[2]}`

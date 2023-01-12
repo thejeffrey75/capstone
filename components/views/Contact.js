@@ -1,6 +1,5 @@
 import html from "html-literal";
 import contactPic from "../../dist/desola-lanre-ologun-IgUR1iX0mqM-unsplash.bfe405a8.jpg";
-import contactPic4 from "../../assets/images/cytonn-photography-ZJEKICY5EXY-unsplash.jpg";
 import mailbox from "../../assets/images/MailBoxWhite.png";
 import mail from "../../assets/images/MailWhite.png";
 import phone from "../../assets/images/PhoneWhite.png";
@@ -22,7 +21,7 @@ Hear about our team!
 
 </div>
 
-<div class= "backgroundI">
+<div class="contactInfo">
 <h2>
   Reach out to us!
 </h2>
@@ -33,10 +32,6 @@ Hear about our team!
 </ul>
 </div>
 </div>
-
-
-
-
 
 `
 ;
