@@ -1,5 +1,5 @@
 import html from "html-literal";
-import contactPic from "../../dist/desola-lanre-ologun-IgUR1iX0mqM-unsplash.jpg";
+import contactPic from "../../assets/images/desola-lanre-ologun-IgUR1iX0mqM-unsplash.jpg";
 import mailbox from "../../assets/images/MailBoxWhite.png";
 import mail from "../../assets/images/MailWhite.png";
 import phone from "../../assets/images/PhoneWhite.png";
