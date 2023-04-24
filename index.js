@@ -35,6 +35,8 @@ function render(state=store.Home){
       document.querySelector("form").addEventListener("submit", event => {
         event.preventDefault();
 
+
+// Create form for results
         const inputList = event.target.elements;
         console.log("Input Element List", inputList);
 
@@ -63,19 +65,7 @@ function render(state=store.Home){
         };
         console.log("request Body", requestData);
 
-
-        let blank= store.Results.blank;
-
-
-
-
-        let reccomendation = "";
-
-        // if (requestData.ailments="stress"){
-        //   return reccomendation="ashwagandha"
-        // }
-
-        //requestData.reccomendation
+        let reccomendation = "fff";
 
         axios
           .post(`${process.env.RESULT_API}/results`, requestData)
@@ -83,32 +73,114 @@ function render(state=store.Home){
             console.log(reccomendation)
             store.Results.results.push(response.data);
 
+  //  All the toggled options
+
+let altOptionsNotice="Keep it consistent with the supplements you are already using. Here are some additional supplements that may provide better results.";
+let altOptionsLink= "https://www.nhlbi.nih.gov/health/educational/healthdisp/pdf/tipsheets/Tips-for-a-Healthy-Lifestyle.pdf";
+let altOptionsLinkNotice= "Check out this link to learn about different ways to improve your health";
+
+
+let viceSmokerNotice="Smoking can have a negative impact on your health, click on this link to learn more";
+let viceSmokerLink=  "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5490618/"
+let viceDrinkerNotice= "Drinking alcohol can have a negative impact on your health, click on this link to learn more";
+let viceDrinkerLink=  "https://www.niaaa.nih.gov/alcohols-effects-health/alcohols-effects-body";
+
+if (vice.includes("smoker")) {
+store.Results.viceSmokerLink.push(viceSmokerLink);
+store.Results.viceSmokerNotice.push(viceSmokerNotice);
+};
+
+
+if (vice.includes("drinker")) {
+  store.Results.viceDrinkerLink.push(viceDrinkerLink);
+  store.Results.viceDrinkerNotice.push(viceDrinkerNotice);
+
+  };
+
 //if stress is selectd
-let ashLinks= {
-  Link1: "180525",
-  Link2: "223325"
-}
 
-store.Results.randomAshwagandhaLink.push(ashLinks);
-
-console.log(store.Results.randomAshwagandhaLink);
-console.log(store.Results.randomAshwagandhaLink);
-
-if (inputList.ailments.value === "stress"){
-  store.Results.blank[0]= store.Results.randomAshwagandhaLink;
+if (inputList.ailments.value === "stress" && !pretrials.includes("ashwagandha")){
   reccomendation= "ashwagandha";
+}
+  else if (inputList.ailments.value === "stress" && pretrials.includes("ashwagandha") && !pretrials.includes("melatonin")){
+    reccomendation= "melatonin";
+  }
+
+  else if (inputList.ailments.value === "stress" && pretrials.includes("ashwagandha") && pretrials.includes("melatonin") ){
+    reccomendation= "magnesium";
+    store.Results.altOptionsLink.push(altOptionsLink);
+    store.Results.altOptionsNotice.push(altOptionsNotice);
+    store.Results.altOptionsLinkNotice.push(altOptionsLinkNotice);
   }
 //if cramps is selected
-  if (inputList.ailments.value === "cramps"){
-    store.Results.blank[0]= store.Results.randomMagnesiumLink;
+
+  if (inputList.ailments.value === "cramps" && !pretrials.includes("magnesium")) {
     reccomendation= "magnesium";
     }
+    else if (inputList.ailments.value === "cramps" && pretrials.includes("magnesium")  && !pretrials.includes("vitamin B12")){
+      reccomendation= "vitamin B12";
+
+  }
+  else if (inputList.ailments.value === "cramps" && pretrials.includes("magnesium") && pretrials.includes("vitamin B12") ){
+reccomendation= "magnesium";
+store.Results.altOptionsLink.push(altOptionsLink);
+store.Results.altOptionsNotice.push(altOptionsNotice);
+store.Results.altOptionsLinkNotice.push(altOptionsLinkNotice);
+  }
+
+  //if cold is selected
+
+    if (inputList.ailments.value === "cold" && !pretrials.includes("vitamin C")){
+      reccomendation= "vitamin C";
+    }
+      else if (inputList.ailments.value === "cold" &&  pretrials.includes("vitamin C") && !pretrials.includes("zinc")){
+        reccomendation= "zinc";
+      }
+      else if (inputList.ailments.value === "cold" && pretrials.includes("zinc") && pretrials.includes("vitamin C") ){
+        reccomendation= "vitamin C";
+        store.Results.altOptionsLink.push(altOptionsLink);
+        store.Results.altOptionsNotice.push(altOptionsNotice);
+        store.Results.altOptionsLinkNotice.push(altOptionsLinkNotice)
+      };
+
+
+
+  //if weight management is selected
+
+
+    if (inputList.ailments.value === "weight management" && !pretrials.includes("apple cider vinegar")){
+      reccomendation= "apple cider vinegar";
+    }
+    else if (inputList.ailments.value === "weight management" && pretrials.includes("apple cider vinegar")&& !pretrials.includes("green tea")){
+      reccomendation= "green tea";
+      }
+      else if (inputList.ailments.value === "weight management" && pretrials.includes("apple cider vinegar") && pretrials.includes("green tea") ){
+        reccomendation= "apple cider vinegar";
+        store.Results.altOptionsLink.push(altOptionsLink);
+        store.Results.altOptionsNotice.push(altOptionsNotice);
+        store.Results.altOptionsLinkNotice.push(altOptionsLinkNotice)
+      };
+
+
+  //if acne is selected
+
+    if (inputList.ailments.value === "acne" && !pretrials.includes("black seed")) {
+      reccomendation= "black seed";
+    }
+    else if (inputList.ailments.value === "acne" && pretrials.includes("black seed")&& !pretrials.includes("vitamin E")){
+      reccomendation= "vitamin E";
+      }
+      else if (inputList.ailments.value === "acne" && pretrials.includes("black seed") && pretrials.includes("vitamin E") ){
+        reccomendation= "apple cider vinegar";
+        store.Results.altOptionsLink.push(altOptionsLink);
+        store.Results.altOptionsNotice.push(altOptionsNotice);
+        store.Results.altOptionsLinkNotice.push(altOptionsLinkNotice)
+      };
+
+      //pushing reccomendation as a link
   store.Results.reccomendation.push(reccomendation);
+  store.Results.reccomendationLink.push(reccomendation.replaceAll(' ', '_'))
 
-
-
-            console.log(store.Results.reccomendation);
-            console.log(store.Results.randomAshwagandhaLink);
             router.navigate("/Results");
           })
           .catch(error => {
@@ -130,13 +202,23 @@ if (inputList.ailments.value === "stress"){
       : "Home";  // Add a switch case statement to handle multiple routes
       switch (view) {
         case "Results":
+          let referencePage =   `https://api.ods.od.nih.gov/dsld/v8/browse-products/?method=by_keyword&q=${store.Results.reccomendation}&from=0&size=10`
+       let link1 = `https://api.ods.od.nih.gov/dsld/v8/label/${store.Results.blank[0]}`
+        let link2 = `https://api.ods.od.nih.gov/dsld/v8/label/${store.Results.blank[1]}`
+        let link3 = `https://api.ods.od.nih.gov/dsld/v8/label/${store.Results.blank[2]}`
+        const requestOne = axios.get(referencePage);
+        const requestTwo = axios.get(link1);
+        const requestThree = axios.get(link2);
+        const requestFour= axios.get(link3);
+        axios.all([requestOne, requestTwo, requestThree,requestFour])
 
-          axios
-              .get(`https://api.ods.od.nih.gov/dsld/v8/browse-ingredientgroups?method=by_letter&q=${store.Results.reccomendation}&from=0&size=3
-
-              `)
             .then(response =>  {
-              console.log(store.Results.reccomendation);
+              store.Results.productInfo= response;
+              console.log(store.Results.altOptions);
+              console.log(store.Results.altOptions[0]);
+              console.log(store.Results.productInfo)
+              console.log(store.Results.productInfo[0].data.hits[0]._id)
+
               done();
             })
             .catch(error => {

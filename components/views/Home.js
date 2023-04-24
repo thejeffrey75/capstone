@@ -2,7 +2,8 @@ import html from "html-literal";
 export default(state)=>html`
 
 <section id="header">
-<a href="index.html"></a>
+<a href="index.html">
+</a>
 </section class=body2>
 
 
@@ -15,7 +16,7 @@ export default(state)=>html`
 </h2>
 
 
-<h2 >
+<h2 class="form" >
 
 <form method="post" action="">
   <label for="age">
@@ -28,13 +29,13 @@ export default(state)=>html`
     required
     />
     <br>
-</label>
+</label >
 
 
 
     <fieldset>
         <legend>Do you?</legend>
-        <input type="checkbox" id="vice" name="vice" value="drinker">Drink<br>
+        <input type="checkbox" id="vice" name="vice" value="drinker">Drink Alcohol<br>
         <input type="checkbox" id="vice" name="vice" value="smoker">Smoke<br>
         <br>
         </select>
@@ -43,13 +44,14 @@ export default(state)=>html`
 
 
 
-    <fieldset>
+    <fieldset >
         <legend>What ailment brings you here?</legend>
-        <input type="radio" id="ailments" name="ailments" value="stress">Stress<br>
-        <input type="radio" id="ailments" name="ailments" value="cold">Cold<br>
+        <input  required type="radio" id="ailments" name="ailments" value="stress">Stress<br>
+        <input  type="radio" id="ailments" name="ailments" value="cold">Cold<br>
         <input type="radio" id="ailments" name="ailments" value="cramps">Cramps<br>
-        <input type="radio" id="ailments" name="ailments" value="weightManagement">Weight Management<br>
+        <input type="radio" id="ailments" name="ailments" value="weight management">Weight Management<br>
         <input type="radio" id="ailments" name="ailments" value="acne">Acne<br>
+
         </select>
         <br>
 
@@ -60,12 +62,17 @@ export default(state)=>html`
     <fieldset>
         <legend>Are you taking any of the following?</legend>
         <input type="checkbox" id="pretrials" name="pretrials" value="ashwagandha">Ashwagandha<br>
-        <input type="checkbox" id="pretrials" name="pretrials" value="vitaminC">Vitamin C<br>
+        <input type="checkbox" id="pretrials" name="pretrials" value="vitamin C">Vitamin C<br>
         <input type="checkbox" id="pretrials" name="pretrials" value="magnesium">Magnesium<br>
-        <input type="checkbox" id="pretrials" name="pretrials" value="acv">Apple Cider Vinegar<br>
-        <input type="checkbox" id="pretrials" name="pretrials" value="blackSeedOil">Black Seed Oil<br>
+        <input type="checkbox" id="pretrials" name="pretrials" value="apple cider vinegar">Apple Cider Vinegar<br>
+        <input type="checkbox" id="pretrials" name="pretrials" value="black seed">Black Seed Oil<br>
+        <input type="checkbox" id="pretrials" name="pretrials" value="melatonin">Melatonin<br>
+        <input type="checkbox" id="pretrials" name="pretrials" value="zinc">Zinc<br>
+        <input type="checkbox" id="pretrials" name="pretrials" value="vitamin B12">Vitamin B12<br>
+        <input type="checkbox" id="pretrials" name="pretrials" value="green tea">Green Tea<br>
+        <input type="checkbox" id="pretrials" name="pretrials" value="vitamin E">Vitamin E<br>
         <br>
-        <input type="submit"  name="Results" value="Submit" />
+        <input type="submit" id="submit" name="Results" value="Submit" />
     </fieldset>
 </form>
 
